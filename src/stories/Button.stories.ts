@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn, userEvent, within } from '@storybook/test';
 import { Button } from './Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -29,6 +29,10 @@ export const Primary: Story = {
     primary: true,
     label: 'Button',
   },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByTestId('TestButton'));
+  }
 };
 
 export const Secondary: Story = {
